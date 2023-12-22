@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-
 import App from './app';
 
 describe('App', () => {
@@ -10,6 +9,6 @@ describe('App', () => {
 
   it('should have a greeting as the title', () => {
     const { getByText } = render(<App />);
-    expect(getByText(/Hello World!/)).toBeTruthy();
+    expect(getByText(/Hello World!/)).toBeInTheDocument();
   });
 });
