@@ -1,0 +1,112 @@
+root: true
+ignorePatterns:
+  - '**/*'
+plugins:
+  - '@nx'
+  - eslint-comments
+  - no-loops
+  - prettier
+overrides:
+  - files:
+      - '*.ts'
+      - '*.tsx'
+      - '*.js'
+      - '*.jsx'
+    extends:
+      - plugin:eslint-comments/recommended
+      - plugin:import/errors
+      - plugin:import/warnings
+      - plugin:promise/recommended
+      - prettier
+      - plugin:prettier/recommended
+      - eslint-config-prettier
+    rules:
+      prettier/prettier: error
+      '@nx/enforce-module-boundaries':
+        - error
+        - enforceBuildableLibDependency: true
+          allow: []
+          depConstraints:
+            - sourceTag: '*'
+              onlyDependOnLibsWithTags:
+                - '*'
+      no-console: 0
+      consistent-return: 0
+      quotes:
+        - error
+        - single
+        - avoidEscape: true
+          allowTemplateLiterals: true
+      no-unused-vars: 0
+      object-curly-newline: 0
+      lines-between-class-members: 0
+      implicit-arrow-linebreak: 0
+      arrow-body-style:
+        - error
+        - as-needed
+      import/no-named-export: off
+      import/no-named-as-default: off
+      import/no-named-as-default-member: off
+      import/newline-after-import: error
+      import/order:
+        - error
+        - groups:
+            - builtin
+            - external
+            - internal
+          newlines-between: never
+          alphabetize:
+            order: asc
+            caseInsensitive: false
+  - files:
+      - '*.ts'
+      - '*.tsx'
+    extends:
+      - plugin:@nx/typescript
+      - plugin:@typescript-eslint/recommended
+      - plugin:import/typescript
+      - airbnb-typescript/base
+    parserOptions:
+      project:
+        - tsconfig.*?.json
+    rules:
+      import/extensions: off
+      '@typescript-eslint/comma-dangle': off
+      '@typescript-eslint/semi': off
+  - files:
+      - '*.js'
+      - '*.jsx'
+    extends:
+      - plugin:@nx/javascript
+    rules: {}
+  - files:
+      - '**/specs/**/*.ts'
+      - '**/specs/**/*.tsx'
+    plugins:
+      - jest
+      - jest-dom
+    extends:
+      - plugin:jest/style
+      - plugin:jest/recommended
+      - plugin:jest-formatting/recommended
+      - plugin:jest-dom/recommended
+    settings:
+      jest:
+        version: latest
+    env:
+      jest/globals: true
+    rules: {}
+  - files:
+      - '**/cypress/*'
+      - '**/*.e2e.spec.ts'
+      - cypress.config.ts
+    plugins:
+      - cypress
+    extends:
+      - plugin:cypress/recommended
+    env:
+      cypress/globals: true
+    rules:
+      jest/expect-expect: off
+      jest/valid-expect: off
+      import/no-extraneous-dependencies: off
