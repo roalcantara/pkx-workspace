@@ -5,6 +5,7 @@ plugins:
   - '@nx'
   - eslint-comments
   - no-loops
+  - prettier
 overrides:
   - files:
       - '*.ts'
@@ -17,7 +18,10 @@ overrides:
       - plugin:import/warnings
       - plugin:promise/recommended
       - prettier
+      - plugin:prettier/recommended
+      - eslint-config-prettier
     rules:
+      prettier/prettier: error
       '@nx/enforce-module-boundaries':
         - error
         - enforceBuildableLibDependency: true
@@ -68,6 +72,7 @@ overrides:
     rules:
       import/extensions: off
       '@typescript-eslint/comma-dangle': off
+      '@typescript-eslint/semi': off
   - files:
       - '*.js'
       - '*.jsx'
