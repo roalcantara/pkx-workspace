@@ -1,4 +1,5 @@
 name: Build
+# https://nx.dev/ci/recipes/set-up/monorepo-ci-github-actions
 
 on:
   pull_request:
@@ -13,10 +14,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-permissions:
-  actions: read
-  contents: read
-
 defaults:
   run:
     shell: bash
@@ -28,32 +25,38 @@ env:
 jobs:
   main:
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
 
       - name: Get pnpm store directory
-        shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
       - uses: actions/cache@v3
-        name: Setup pnpm cache
         with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          path: |
+            ${{ env.STORE_PATH }}
+            ~/.cache/Cypress
+          key: ${{ runner.os }}-caches-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+            ${{ runner.os }}-caches-
 
-      - uses: nrwl/nx-set-shas@v4
       - run: pnpm i
+      - uses: nrwl/nx-set-shas@v4
+
+      # needed for nx affected to work when CI is running on a PR
+      - run: git branch --track main origin/main
+
       - run: npx nx format:check
-      - run: npx nx affected --target=lint --parallel=3
-      - run: npx nx affected --target=build --parallel=3
-      - run: npx nx affected --target=test --parallel=3 --ci --code-coverage
-      - run: npx nx affected --target=e2e --parallel=3 --ci
+      - run: npx nx affected -t lint,test,build --parallel=3
+      - run: npx nx affected -t e2e --parallel=3 --ci
