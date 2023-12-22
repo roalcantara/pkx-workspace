@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/app"
@@ -54,19 +56,34 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
       "options": {
         "reportsDirectory": "../../coverage/apps/app"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"]
+      "outputs": [
+        "{options.outputFile}"
+      ]
     },
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "app:build"
+      }
+    },
+    "lhci": {
+      "executor": "nx:run-commands",
+      "options": {
+        "color": true,
+        "parallel": false,
+        "commands": [
+          "npx nx run app:build:prod",
+          "npx lhci autorun --collect.isSinglePageApplication=true --collect.staticDistDir=./dist/apps/app"
+        ]
       }
     }
   },

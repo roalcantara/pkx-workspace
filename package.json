@@ -12,6 +12,7 @@
     "styled-components": "5.3.11"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.13.0",
     "@nx/cypress": "17.2.6",
     "@nx/eslint": "17.2.6",
     "@nx/eslint-plugin": "17.2.6",
