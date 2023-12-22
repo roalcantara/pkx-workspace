@@ -1,4 +1,6 @@
-# Pdx-Workspace
+# pkx-workspace
+
+![Build](https://github.com/roalcantara/pkx-workspace/actions/workflows/build.yml/badge.svg)
 
 Yet another [Nx][6] monorepo
 
@@ -7,7 +9,7 @@ Yet another [Nx][6] monorepo
 ## Install
 
 ```sh
-git clone https://github.com/roalcantara/pdx-workspace
+git clone https://github.com/roalcantara/pkx-workspace
 ```
 
 ### Dependencies
@@ -57,7 +59,7 @@ npx nx format:write
 
 The project is available as open source under the terms of the [MIT][1] [License](LICENSE)
 
-[0]: https://github.com/roalcantara/pdx-workspace 'pdx-workspace'
+[0]: https://github.com/roalcantara/pkx-workspace 'pkx-workspace'
 [1]: https://opensource.org/licenses/MIT 'Open Source Initiative'
 [2]: https://contributor-covenant.org 'A Code of Conduct for Open Source Communities'
 [3]: https://editorconfig.org 'EditorConfig'
