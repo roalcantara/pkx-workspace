@@ -42,3 +42,6 @@ Thumbs.db
 
 # Lighthouse CI
 .lighthouseci
+
+# vite-plugin-pwa
+dev-dist
