@@ -68,6 +68,17 @@
       "options": {
         "buildTarget": "app:build"
       }
+    },
+    "lhci": {
+      "executor": "nx:run-commands",
+      "options": {
+        "color": true,
+        "parallel": false,
+        "commands": [
+          "npx nx run app:build:prod",
+          "npx lhci autorun --collect.isSinglePageApplication=true --collect.staticDistDir=./dist/apps/app"
+        ]
+      }
     }
   },
   "tags": []

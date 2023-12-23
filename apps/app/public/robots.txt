@@ -1,0 +1,4 @@
+# https://robotstxt.org/robotstxt.html
+# https://developers.google.com/search/docs/crawling-indexing/robots/create-robots-txt#useful-robots.txt-rules
+User-agent: *
+Disallow:
