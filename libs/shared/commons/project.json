@@ -1,0 +1,30 @@
+{
+  "name": "shared-commons",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/commons/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/commons",
+        "main": "libs/shared/commons/src/index.ts",
+        "tsConfig": "libs/shared/commons/tsconfig.lib.json",
+        "assets": ["libs/shared/commons/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "reportsDirectory": "../../../coverage/libs/shared/commons"
+      }
+    }
+  },
+  "tags": []
+}
