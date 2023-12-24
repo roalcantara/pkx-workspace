@@ -83,8 +83,8 @@ overrides:
       - plugin:@nx/javascript
     rules: {}
   - files:
-      - '**/specs/**/*.ts'
-      - '**/specs/**/*.tsx'
+      - '**/**/*.spec.ts'
+      - '**/**/*.spec.tsx'
     plugins:
       - jest
       - jest-dom
