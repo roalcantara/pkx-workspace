@@ -71,6 +71,9 @@ overrides:
         - tsconfig.*?.json
     rules:
       import/extensions: off
+      import/no-extraneous-dependencies:
+        - error
+        - packageDir: ./
       '@typescript-eslint/comma-dangle': off
       '@typescript-eslint/semi': off
   - files:
@@ -109,4 +112,3 @@ overrides:
     rules:
       jest/expect-expect: off
       jest/valid-expect: off
-      import/no-extraneous-dependencies: off
