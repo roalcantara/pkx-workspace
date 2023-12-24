@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@pkx-workspace/shared-commons": ["libs/shared/commons/src/index.ts"]
+      "@pkx-workspace/properties": ["libs/properties/src/index.ts"],
+      "@pkx-workspace/shared-commons": ["libs/shared/commons/src/index.ts"],
+      "@pkx-workspace/shared-ui": ["libs/shared/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
